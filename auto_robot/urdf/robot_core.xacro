@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="robot_core">
+
+    <link name="base_link">
+      <inertial>
+        <origin xyz="-0.00177767886836495 -7.08145711406941E-05 0.0345244109350669" rpy="0 0 0" />
+        <mass value="0.749591825708612" />
+        <inertia
+          ixx="0.00560242940522896" ixy="-3.10886247756778E-06" ixz="7.02379711896478E-05"
+          iyy="0.00543989398233584" iyz="-2.42126647279533E-17" izz="0.00951025265754031" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://auto_robot/meshes/base_link.STL" />
+        </geometry>
+        <material name="body_color">
+          <color rgba="0.792 0.819 0.933 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.05" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="0.13" length="0.10"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="wheel_1">
+      <inertial>
+        <origin xyz="1.0863E-06 -2.2552E-06 0.0075339" rpy="0 0 0" />
+        <mass value="0.039266" />
+        <inertia
+          ixx="3.5298E-06" ixy="1.754E-10" ixz="1.4711E-10"
+          iyy="3.5298E-06" iyz="-1.6617E-10" izz="5.3943E-06" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://auto_robot/meshes/wheel_1.STL" />
+        </geometry>
+        <material name="wheel_color">
+          <color rgba="0.1 0.1 0.1 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="0.0325" length="0.03"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="joint_1" type="continuous">
+      <origin xyz="0.12368 -0.00013859 -0.019" rpy="1.5708 0 1.5708" />
+      <parent link="base_link" />
+      <child link="wheel_1" />
+      <axis xyz="0 0 1" />
+    </joint>
+
+    <link name="wheel_2">
+      <inertial>
+        <origin xyz="1.0862E-06 -2.255E-06 0.0075339" rpy="0 0 0" />
+        <mass value="0.039266" />
+        <inertia
+          ixx="3.5297E-06" ixy="3.9609E-11" ixz="1.471E-10"
+          iyy="3.5297E-06" iyz="-1.6617E-10" izz="5.3942E-06" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://auto_robot/meshes/wheel_2.STL" />
+        </geometry>
+        <material name="wheel_color">
+          <color rgba="0.1 0.1 0.1 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="0.0325" length="0.03"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="joint_2" type="continuous">
+      <origin xyz="-0.062025 0.10707 -0.019" rpy="1.5708 0 -2.618" />
+      <parent link="base_link" />
+      <child link="wheel_2" />
+      <axis xyz="0 0 1" />
+    </joint>
+
+    <link name="wheel_3">
+      <inertial>
+        <origin xyz="1.0862E-06 -2.2551E-06 0.0075339" rpy="0 0 0" />
+        <mass value="0.039266" />
+        <inertia
+          ixx="3.5297E-06" ixy="6.0263E-11" ixz="1.471E-10"
+          iyy="3.5296E-06" iyz="-1.6618E-10" izz="5.3941E-06" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://auto_robot/meshes/wheel_3.STL" />
+        </geometry>
+        <material name="wheel_color">
+          <color rgba="0.1 0.1 0.1 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="0.0325" length="0.03"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="joint_3" type="continuous">
+      <origin xyz="-0.062024 -0.10735 -0.019" rpy="1.5708 0 -0.5236" />
+      <parent link="base_link" />
+      <child link="wheel_3" />
+      <axis xyz="0 0 1" />
+    </joint>
+
+  </xacro:macro>
+</robot>

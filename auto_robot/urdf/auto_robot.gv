@@ -1,0 +1,32 @@
+digraph G {
+node [shape=box];
+"robot_footprint" [label="robot_footprint"];
+"base_link" [label="base_link"];
+"imu_link" [label="imu_link"];
+"wheel_1" [label="wheel_1"];
+"wheel_2" [label="wheel_2"];
+"wheel_3" [label="wheel_3"];
+"lidar" [label="lidar"];
+"oak_camera" [label="oak_camera"];
+"camera_link" [label="camera_link"];
+"camera_link_optical" [label="camera_link_optical"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"robot_footprint" -> "dummy_joint" [label="xyz: 0 0 0.0515 \nrpy: 0 -0 0"]
+"dummy_joint" -> "base_link"
+"base_link" -> "imu_joint" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"imu_joint" -> "imu_link"
+"base_link" -> "joint_1" [label="xyz: 0.12368 -0.00013859 -0.019 \nrpy: 1.5708 -0 1.5708"]
+"joint_1" -> "wheel_1"
+"base_link" -> "joint_2" [label="xyz: -0.062025 0.10707 -0.019 \nrpy: 1.5708 -2.77556e-17 -2.618"]
+"joint_2" -> "wheel_2"
+"base_link" -> "joint_3" [label="xyz: -0.062024 -0.10735 -0.019 \nrpy: 1.5708 -5.55112e-17 -0.5236"]
+"joint_3" -> "wheel_3"
+"base_link" -> "lidar_joint" [label="xyz: -0.00012313 -2.5346e-05 0.1797 \nrpy: 0 -0 0"]
+"lidar_joint" -> "lidar"
+"base_link" -> "oak_joint" [label="xyz: 0.12008 -0.00013908 0.12046 \nrpy: 0 -0 0"]
+"oak_joint" -> "oak_camera"
+"oak_camera" -> "camera_link_joint" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"camera_link_joint" -> "camera_link"
+"camera_link" -> "camera_optical_joint" [label="xyz: 0 0 0 \nrpy: -1.5708 -0 -1.5708"]
+"camera_optical_joint" -> "camera_link_optical"
+}

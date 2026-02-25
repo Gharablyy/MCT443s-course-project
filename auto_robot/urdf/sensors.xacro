@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="sensors">
+
+    <link name="lidar">
+      <inertial>
+        <origin xyz="0.0067682 -0.00020713 -0.022521" rpy="0 0 0" />
+        <mass value="0.17118" />
+        <inertia
+          ixx="7.9535E-05" ixy="-1.035E-07" ixz="2.0281E-05"
+          iyy="0.00012426" iyz="-3.9476E-07" izz="0.00014191" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://auto_robot/meshes/lidar.STL" />
+        </geometry>
+        <material name="lidar_color">
+          <color rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://auto_robot/meshes/lidar.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="lidar_joint" type="fixed">
+      <origin xyz="-0.00012313 -2.5346E-05 0.1797" rpy="0 0 0" />
+      <parent link="base_link" />
+      <child link="lidar" />
+      <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="oak_camera">
+      <inertial>
+        <origin xyz="-0.0086 -5.8579E-18 0" rpy="0 0 0" />
+        <mass value="0.041718" />
+        <inertia
+          ixx="3.0322E-05" ixy="-8.0273E-23" ixz="-4.5515E-23"
+          iyy="3.5543E-06" iyz="-4.7563E-21" izz="2.8825E-05" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://auto_robot/meshes/oak_camera.STL" />
+        </geometry>
+        <material name="camera_color">
+          <color rgba="0.25098 0.25098 0.25098 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://auto_robot/meshes/oak_camera.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="oak_joint" type="fixed">
+      <origin xyz="0.12008 -0.00013908 0.12046" rpy="0 0 0" />
+      <parent link="base_link" />
+      <child link="oak_camera" />
+      <axis xyz="0 0 0" />
+    </joint>    
+
+    <link name="camera_link"/>
+    <joint name="camera_link_joint" type="fixed">
+      <parent link="oak_camera"/>
+      <child link="camera_link"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+    
+    <link name="camera_link_optical"/>
+    <joint name="camera_optical_joint" type="fixed">
+      <parent link="camera_link"/>
+      <child link="camera_link_optical"/>
+      <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+    </joint>
+
+    <link name="imu_link">
+      <visual>
+        <geometry>
+          <box size="0.0001 0.0001 0.0001"/>
+        </geometry>
+        <material name="imu_color">
+          <color rgba="1.0 0.0 0.0 1"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.0001 0.0001 0.0001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.01"/>
+        <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+      </inertial>
+    </link>
+    <joint name="imu_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="imu_link"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+  </xacro:macro>
+</robot>
